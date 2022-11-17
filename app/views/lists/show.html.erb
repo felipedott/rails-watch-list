@@ -1,2 +1,25 @@
-<%= render 'navbar' %>
+<%= render 'shared/navbar' %>
 <%= render 'individual', list: @list %>
+
+
+
+<div class="container mt-3">
+  <div class="d-flex justify-content-between align-items-center">
+    <h3> <%= @list.name %> lists</h3>
+    <%= link_to 'Add a movie', new_list_bookmark_path(@list), class: 'btn btn-primary' %>
+
+  </div>
+
+  <hr>
+
+  <div class="cards mt-3">
+    <div class="card-trip">
+      <% @list.bookmarks.each do |bookmark| %>
+      <img src="<%= bookmark.movie.poster_url %>" />
+        <div class="card-trip-infos">
+          <h2><%= bookmark.movie.title %></h2>
+          <p><%= bookmark.movie.overview %></p>
+        </div>
+      <% end %>
+  </div>
+</div>

@@ -1,1 +1,9 @@
-<h1>teste</h1>
+<%= render 'shared/navbar' %>
+
+<div class="container m-5">
+<%= simple_form_for [@list, @bookmark] do |f| %>
+  <%= f.association :movie, collection: Movie.all.order(:title) %>
+  <%= f.input :comment %>
+  <%= f.submit "Add movie", class: "btn btn-flat" %>
+<% end %>
+</div>
