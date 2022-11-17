@@ -1,15 +1,11 @@
 <div id="<%= dom_id list %>">
-  <p>
-    <strong>Name:</strong>
-    <%= list.name %>
-  </p>
+  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= list.image_url %>);">
+    <div class="container">
+      <h1><%= list.name %></h1>
+    </div>
+  </div>
 
+<%= render 'bookmarks/movies' %>
 
-
-<%#
-  <p>
-    <strong>Rating:</strong>
-    < %= flat.rating % >
-  </p> %>
 
 </div>
