@@ -40,17 +40,21 @@
 
     </div>
 
+<% if @list.movies.empty? == false %>
     <hr>
-
     <div>
       <div class="row">
         <div class="col-12 col-sm-6">
           <% if @list.reviews.empty? %>
-            <p>Add a Review</p>
+            <div class="flash flash-danger">
+              <span><strong>No reviews yet!</strong></span>
+              <span>Be the first to add a review!</span>
+            </div>
           <% else %>
-            <%= @list.reviews.each do |review| %>
-
-              <small><%= review.comment %> <%= review.rating %>/5</small>
+            <% @list.reviews.each do |review| %>
+              <div class="flash flash-success">
+                  <span><strong><%= review.rating %> / 5</strong> <small> <%= review.comment %> </small></span>
+              </div>
             <% end %>
           <% end %>
         </div>
@@ -64,10 +68,13 @@
 
             <%= f.input :comment %>
             <%= f.input :rating %>
-            <%= f.submit class: 'btn btn-sucess' %>
+            <%= f.submit class: 'btn btn-success' %>
           <% end %>
         </div>
       </div>
     </div>
+<% end %>
+
+
   </div>
 </div>
