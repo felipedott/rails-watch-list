@@ -28,7 +28,7 @@
               <p><%= bookmark.movie.overview %></p>
               <hr>
               <div class="d-flex justify-content-between align-items-center">
-              <p><%= bookmark.comment %></p>
+              <p>"<%= bookmark.comment %>"</p>
               <%= link_to "Delete",
               bookmark_path(bookmark),
               class: "btn btn-danger",
@@ -38,6 +38,36 @@
           </div>
         <% end %>
 
+    </div>
+
+    <hr>
+
+    <div>
+      <div class="row">
+        <div class="col-12 col-sm-6">
+          <% if @list.reviews.empty? %>
+            <p>Add a Review</p>
+          <% else %>
+            <%= @list.reviews.each do |review| %>
+
+              <small><%= review.comment %> <%= review.rating %>/5</small>
+            <% end %>
+          <% end %>
+        </div>
+
+        <div class="col-12 col-sm-6">
+          <h4>Add a review here:</h4>
+          <%= simple_form_for [@list, @review] do |f| %>
+
+          <%= f.error_notification %>
+          <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+            <%= f.input :comment %>
+            <%= f.input :rating %>
+            <%= f.submit class: 'btn btn-sucess' %>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
